@@ -9,7 +9,9 @@ function App() {
   const [verifiedUser, setVerifiedUser] = useState(false)
   const [isAdmin, setisAdmin] = useState(false)
 
-  const logInHandler = () => {
+  const logInHandler = (adminUser) => {
+    if(adminUser)
+    setisAdmin(true)
     setVerifiedUser(true)
   }
 
@@ -17,10 +19,10 @@ function App() {
     setVerifiedUser(false)
   }
 
-  let content = <Login onLogin={logInHandler} />
+  let content = <Login onLogin={logInHandler}/>
 
   if(verifiedUser){
-    content = <Content onLogout={logOutHandler}/>
+    content = <Content onLogout={logOutHandler} adminRights={isAdmin}/>
   }
 
 

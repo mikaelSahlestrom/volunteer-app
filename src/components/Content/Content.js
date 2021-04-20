@@ -38,6 +38,7 @@ function Content(props) {
   return (
     <div className={styles.content}>
       <h2>{navigation}</h2>
+      {props.adminRights && <p>All hail the admin</p>}
       {pickedContent}
       <Navbar setPath={setPathHandler} />
     </div>
