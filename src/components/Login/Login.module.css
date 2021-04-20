@@ -1,0 +1,31 @@
+.login {
+  text-align: center;
+}
+
+.login-buttons {
+  width: 35rem;
+  max-width: 90%;
+  margin: 3rem auto;
+}
+
+.login h1{
+    color: rgba(6, 111, 160, 0.54)
+}
+
+.login p{
+    margin-top: -40px;
+    color: black;
+    text-decoration: underline;
+    
+}
+
+.login p:hover{
+    cursor:pointer;
+}
+
+.App-logo {
+  margin-top: 40px;
+  height: 60vmin;
+  pointer-events: none;
+
+}
