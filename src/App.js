@@ -8,6 +8,7 @@ function App() {
     { name: "mikael", password: "test", admin: true },
     { name: "apa", password: "123", admin: false },
     { name: "sina", password: "000", admin: true },
+    { name: "sara", password: "1234", admin: true},
   ];
 
   const [verifiedUser, setVerifiedUser] = useState(false);
