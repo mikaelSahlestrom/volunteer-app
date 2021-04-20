@@ -11,7 +11,7 @@ function Navbar(props) {
         props.setPath(pickedPathName)
     }
     return (
-        <div className={styles.navbar}>
+        <div className={`${styles.navbar} ${styles[props.colorTheme]}`}>
             <NavbarButton onClick={pickPath} image={Calendar} type="schedule"/>
             <NavbarButton onClick={pickPath} image={Dog} type="animals"/>
             <NavbarButton onClick={pickPath} image={Chat}  type="chat"/>

@@ -1,12 +1,16 @@
 import React from "react";
 import styles from "./Content.module.css";
 import Navbar from "../UI/Navbar";
-import Profile from './Profile/Profile'
+import Profile from "./Profile/Profile";
+import Schedule from "./Schedule/Schedule"
+import Animals from "./Animals/Animals"
+import Chat from "./Chat/Chat"
 
 import { useState } from "react";
 
 function Content(props) {
-    // TODO: Base content style on admin rights or not
+  let colorTheme = "user";
+  // TODO: Base content style on admin rights or not
   const [navigation, setnavigation] = useState("schedule");
 
   const setPathHandler = (pickedPath) => {
@@ -16,16 +20,16 @@ function Content(props) {
     props.onLogout();
   };
 
-  let pickedContent = <p> Here is the current content, schedule </p>;
+  let pickedContent;
   switch (navigation) {
     case "schedule":
-      pickedContent = <p> Here is the current content, schedule </p>;
+      pickedContent = <Schedule />;
       break;
     case "animals":
-      pickedContent = <p> Here is the current content, animals </p>;
+      pickedContent = <Animals />;
       break;
     case "chat":
-      pickedContent = <p> Here is the current content, chat </p>;
+      pickedContent = <Chat />;
       break;
     case "profile":
       pickedContent = <Profile logoutHandler={logout} />;
@@ -35,12 +39,16 @@ function Content(props) {
       break;
   }
 
+  if (props.user.admin) {
+    colorTheme = "admin";
+  }
+
   return (
     <div className={styles.content}>
       <h2>{navigation}</h2>
-      {props.adminRights && <p>All hail the admin</p>}
+      <p>Hello {props.user.name}</p>
       {pickedContent}
-      <Navbar setPath={setPathHandler} />
+      <Navbar setPath={setPathHandler} colorTheme={colorTheme} />
     </div>
   );
 }

@@ -19,21 +19,35 @@ function Login(props) {
     setIsValid(true);
   };
 
+  let isAdmin = false;
+
+  const controlCredentials = () => {
+    for (const currentUser of props.currentUsers) {
+      if (
+        currentUser.name === enteredUsername &&
+        currentUser.password === enteredPassword
+      ) {
+        isAdmin = currentUser.admin;
+        return true;
+      }
+    }
+    return false;
+  };
+
   const loginSubmitHandler = (event) => {
     event.preventDefault();
+
+    // Todo: change text depending if username exists or if the field is not entered?
     if (
-      enteredUsername.trim().length === 0 &&
-      enteredPassword.trim().length === 0
+      (enteredUsername.trim().length === 0 &&
+        enteredPassword.trim().length === 0) ||
+      !controlCredentials()
     ) {
       setIsValid(false);
       return;
     }
-    if (enteredUsername.trim() === "admin") {
-      props.onLogin(true);
-      return;
-    }
-    // Todo: check if credentials is ok
-    props.onLogin();
+
+    props.login(enteredUsername, enteredPassword, isAdmin);
   };
 
   const SignUp = () => {
