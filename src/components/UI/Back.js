@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Back() {
+function BackButton() {
     return (
         <div>
-            <p>Bring me back</p>
+            <p>Bring me Back</p>
         </div>
     )
 }
 
-export default Back
+export default BackButton

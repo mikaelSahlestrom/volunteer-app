@@ -1,0 +1,17 @@
+.navbar-button{
+    display: inline;
+    width: 25%;
+    /* border: solid 1px black; */
+}
+
+.navbar-button focus{
+    background-color: rgba(0,0,0,0.1);
+}
+
+.navbar-button:hover{
+   cursor: pointer;
+}
+
+.image{
+    width: 50%;
+}
