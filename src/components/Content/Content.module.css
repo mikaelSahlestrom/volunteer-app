@@ -1,4 +1,21 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .content{
-    /* background: beige; */
-    text-align: center;
+    background: red;
+    border-radius: 0px;
+    color: #FFF;
+    top: 20px;
+    height: 100px;
+    text-align: left;
+}
+
+h2{
+    font-size: 32px;
+    text-align: left;
+    padding-top: 30px;
+    padding-left: 20px;
 }

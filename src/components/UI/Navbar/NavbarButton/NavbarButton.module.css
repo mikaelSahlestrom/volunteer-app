@@ -1,6 +1,7 @@
 .navbar-button{
     display: inline;
     width: 25%;
+    text-align: center;
     /* border: solid 1px black; */
 }
 

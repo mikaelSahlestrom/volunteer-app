@@ -45,8 +45,7 @@ function Content(props) {
 
   return (
     <div className={styles.content}>
-      <h2>{navigation}</h2>
-      <p>Hello {props.user.name}</p>
+      <h2>{navigation.charAt(0).toUpperCase() + navigation.slice(1)}</h2>
       {pickedContent}
       <Navbar setPath={setPathHandler} colorTheme={colorTheme} />
     </div>

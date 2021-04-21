@@ -1,5 +1,32 @@
-.animals{
-    background-color: grey ;
-    height: 500px;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+p{
+    font-size: 16px;
+}
+
+.animals{
+    background-color: white ;
+    height: 500px;
+    margin-top: 20px;
+    padding-top: 20px;
+
+}
+
+.animalelem{
+    text-align: left;
+    background-color: rgb(255, 0, 0);
+    padding: 20px;
+    margin: 5px 10px 5px 10px;
+    display: flex;
+    color: white;
+    border-radius: 20px;
+}
+
+.animaleleminfo{
+    padding-left: 20px;
+    padding-right: 20px;
 }
