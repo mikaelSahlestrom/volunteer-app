@@ -1,14 +1,13 @@
 import React from 'react'
 import styles from './Animals.module.css'
-import AnimalIcon from '../../../Icons/DogIcon.svg'
 
-function AnimalElem() {
+function AnimalElem(props) {
     return (
-        <div className={styles.animalelem}>
-            <img src={AnimalIcon}></img>
+        <div className={styles['animalelem']}>
+            <img className={styles['animalimg']} src={props.animalimg} alt=""></img>
             <div className={styles.animaleleminfo}>
-                <h3>Animal</h3>
-                <p>Animal description & stuff</p>
+                <h3>{props.name}</h3>
+                <p>{props.desc}</p>
             </div>
 
         </div>
