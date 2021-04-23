@@ -26,10 +26,7 @@ function Login(props) {
 
   const controlCredentials = (username, password) => {
     for (const user of props.users) {
-      if (
-        user.name === username &&
-        user.password === password
-      ) {
+      if (user.name === username && user.password === password) {
         isAdmin = user.admin;
         return true;
       }
@@ -45,14 +42,19 @@ function Login(props) {
     props.login(username, password, isAdmin);
   };
 
-  const SignUp = () => {
+  const signUpHandler = () => {
     setShowLoginMeny(false);
     setShowSignUp(true);
   };
 
-  const EnterCredentials = () => {
+  const enterCredentialsHandler = () => {
     setShowLoginMeny(false);
     setShowLogin(true);
+  };
+
+  const forgottenPasswordHandler = () => {
+    setShowLoginMeny(false);
+    setshowForgotPassword(true);
   };
 
   const createNewUserHandler = () => {
@@ -68,20 +70,25 @@ function Login(props) {
       {!isValid && <p>Entered username and password doesn't exist</p>}
       {showLoginMeny && (
         <div>
-          <Button onClick={EnterCredentials}>Login</Button>
+          <Button onClick={enterCredentialsHandler}>Login</Button>
           <br />
-          <Button onClick={SignUp}>Sign up</Button>
+          <Button onClick={signUpHandler}>Sign up</Button>
           <br />
           <br />
           <p
             className={styles["password-link"]}
-            onClick={() => console.log("take me to passwords")}
+            onClick={forgottenPasswordHandler}
           >
             Forgot your password?
           </p>
         </div>
       )}
-      {showLogin && <LoginForm onLogin={onLoginHandler} returnToMeny={returnToMenyHandler} />}
+      {showLogin && (
+        <LoginForm
+          onLogin={onLoginHandler}
+          returnToMeny={returnToMenyHandler}
+        />
+      )}
       {showSignUp && (
         <SignUpForm
           createNewUser={createNewUserHandler}
