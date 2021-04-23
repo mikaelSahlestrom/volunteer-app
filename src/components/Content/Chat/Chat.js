@@ -3,13 +3,29 @@ import styles from './Chat.module.css'
 // RCE CSS
 import 'react-chat-elements/dist/main.css'
 // MessageBox component
-import { MessageBox } from 'react-chat-elements'
-import {ChatList} from 'react-chat-elements'
+import { MessageBox, ChatList, ChatItem } from 'react-chat-elements'
 
 function Chat() {
+    let listOfChats = [
+        {
+            avatar: 'https://avatars.githubusercontent.com/u/82896272?v=4',
+            title: 'TestBot',
+            subtitle: 'How are you?',
+            date: new Date(),
+        },
+        {
+            avatar: 'https://avatars.githubusercontent.com/u/82896272?v=4',
+            title: 'Adam',
+            subtitle: 'Progress has been made',
+            date: new Date(2021, 1, 1, 16, 10)
+        },
+    ];
     return (
         <div className={styles.Chat}>
-            Insert some fancy chat will ya?
+            <ChatList 
+                className = 'chat list'
+                dataSource = {listOfChats} 
+            />
         </div>
     )
 }
