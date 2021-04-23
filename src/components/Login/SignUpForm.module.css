@@ -1,0 +1,15 @@
+.control input {
+  font: inherit;
+}
+
+.control input:focus {
+  outline: none;
+  border-color: #4f005f;
+  background: #f6dbfc;
+}
+
+.control.invalid input {
+  z-index: -1;
+  border-color: red;
+  background: #fbdada;
+}

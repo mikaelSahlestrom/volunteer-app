@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import styles from "./Login.module.css";
 import logo from "../../Icons/Logo.svg";
 import Button from "../UI/Button/Button";
@@ -16,6 +16,7 @@ function Login(props) {
   const [isValid, setIsValid] = useState(true);
 
   const returnToMenyHandler = () => {
+    setIsValid(true)
     setShowLoginMeny(true);
     setShowLogin(false);
     setShowSignUp(false);
@@ -68,7 +69,7 @@ function Login(props) {
       <img src={logo} className={styles["App-logo"]} alt="logo" />
       <h1>VolunteerApp</h1>
       {/* //TODO: Change error message depending on error. Include a timer or reset of the message  */}
-      {!isValid && <p>Entered username and password doesn't exist</p>}
+      {!isValid && <p style={{color: "red"}}>Entered username and password doesn't exist</p>}
       {showLoginMeny && (
         <div>
           <Button onClick={enterCredentialsHandler}>Login</Button>

@@ -24,6 +24,8 @@ function LoginForm(props) {
   const loginSubmitHandler = (event) => {
     event.preventDefault();
     props.onLogin(enteredUsername, enteredPassword);
+    setEnteredUsername("")
+    setEnteredPassword("")
   };
 
   const userNameChangeHandler = (event) => {
