@@ -57,8 +57,9 @@ function Login(props) {
     setshowForgotPassword(true);
   };
 
-  const createNewUserHandler = () => {
-    setShowLoginMeny(false);
+  const createNewUserHandler = (username, password, admin) => {
+    props.updateUsers(username, password, admin)
+    setShowLoginMeny(true);
     setShowSignUp(false);
   };
 

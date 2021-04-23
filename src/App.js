@@ -10,6 +10,7 @@ function App() {
     { name: "sara", password: "1234", admin: true },
   ];
 
+  const [userDB, setUserDB] = useState(mockdataUsers)
   const [verifiedUser, setVerifiedUser] = useState(false);
 
   const [user, setUser] = useState({
@@ -35,6 +36,13 @@ function App() {
     });
   };
 
+  const updateUsersHandler = (name, password, admin) => {
+    setUserDB(prevState => {
+      return [...prevState,
+      {name, password, admin}]
+    })
+  }
+
   const logOutHandler = () => {
     localStorage.removeItem("verifiedUser")
     setVerifiedUser(false);
@@ -43,7 +51,7 @@ function App() {
   return (
   <>
   <main>
-    {!verifiedUser && <Login login={logInHandler} users={mockdataUsers} />}
+    {!verifiedUser && <Login login={logInHandler} users={userDB} updateUsers={updateUsersHandler} />}
     {verifiedUser && <Content onLogout={logOutHandler} user={user} />}
   </main>
     </>
