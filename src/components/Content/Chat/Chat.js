@@ -3,7 +3,7 @@ import styles from './Chat.module.css'
 // RCE CSS
 import 'react-chat-elements/dist/main.css'
 // MessageBox component
-import { MessageBox, ChatList, ChatItem } from 'react-chat-elements'
+import { MessageBox, ChatList, ChatItem, MessageList } from 'react-chat-elements'
 
 function Chat() {
     let listOfChats = [
@@ -24,7 +24,10 @@ function Chat() {
         <div className={styles.Chat}>
             <ChatList 
                 className = 'chat list'
-                dataSource = {listOfChats} 
+                dataSource = {listOfChats}
+                onClick = {(props) => 
+                    alert(props.title)
+                }
             />
         </div>
     )
