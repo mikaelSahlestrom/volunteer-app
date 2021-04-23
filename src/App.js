@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 import Login from "./components/Login/Login";
 import Content from "./components/Content/Content";
 
@@ -44,7 +43,7 @@ function App() {
   return (
   <>
   <main>
-    {!verifiedUser && <Login login={logInHandler} currentUsers={mockdataUsers} />}
+    {!verifiedUser && <Login login={logInHandler} users={mockdataUsers} />}
     {verifiedUser && <Content onLogout={logOutHandler} user={user} />}
   </main>
     </>

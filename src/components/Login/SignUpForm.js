@@ -1,6 +1,7 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
-import Button from "../UI/Button";
+import Button from "../UI/Button/Button";
+import Form from "../UI/Form/Form";
 
 function SignUpForm(props) {
   const signUpNewUserHandler = () => {
@@ -8,11 +9,8 @@ function SignUpForm(props) {
     ;
   };
 
-  const back = () => {
-    console.log("go back")
-  }
   return (
-    <div className="input">
+    <Form>
       <TextField id="signup-name" label="Full Name" />
       <br />
       <TextField id="signup-username" label="Username" />
@@ -22,9 +20,10 @@ function SignUpForm(props) {
       <TextField id="signup-password-repeat" label="Repeat Password" />
       <br />
       <br />
-      <Button onClick={signUpNewUserHandler}>Submit</Button>
-      <Button onClick={back}>Back</Button>
-    </div>
+      <Button onClick={signUpNewUserHandler} disabled={true}>Submit</Button>
+      <br/>
+      <Button onClick={props.returnToMeny}>Back</Button>
+    </Form>
   );
 }
 

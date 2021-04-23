@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './Navbar.module.css'
-import NavbarButton from './NavbarButton'
-import Dog from '../../Icons/DogIcon.svg'
-import Calendar from '../../Icons/CalendarIcon.svg'
-import Chat from '../../Icons/ChatIcon.svg'
-import Profile from '../../Icons/ProfileIcon.svg'
+import NavbarButton from './NavbarButton/NavbarButton'
+import Dog from '../../../Icons/DogIcon.svg'
+import Calendar from '../../../Icons/CalendarIcon.svg'
+import Chat from '../../../Icons/ChatIcon.svg'
+import Profile from '../../../Icons/ProfileIcon.svg'
 
 function Navbar(props) {
     const pickPath = (pickedPathName) => {

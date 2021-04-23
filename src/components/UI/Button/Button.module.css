@@ -1,0 +1,30 @@
+.button{
+    height: 50px;
+    width: 200px;
+    background: rgba(6, 111, 160, 0.54);
+    border-radius: 1em;
+    border: 0px;
+    color: white;
+    font-size: large;
+    margin-bottom: 20px;
+}
+
+.button:hover,
+.button:active {
+  background: #118856;
+  border-color: #118856;
+}
+
+.button:focus {
+  outline: none;
+}
+
+button:disabled,
+button:focus:disabled,
+button:hover:disabled,
+button:active:disabled {
+  background: #ccc;
+  border-color: #ccc;
+  color: #666666;
+  cursor: not-allowed;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Content.module.css";
-import Navbar from "../UI/Navbar";
+import Navbar from "../UI/Navbar/Navbar";
 import Profile from "./Profile/Profile";
 import Schedule from "./Schedule/Schedule"
 import Animals from "./Animals/Animals"

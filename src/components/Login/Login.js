@@ -1,130 +1,96 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
 import logo from "../../Icons/Logo.svg";
-import Button from "../UI/Button";
+import Button from "../UI/Button/Button";
 
-import { TextField } from "@material-ui/core";
 import SignUpForm from "./SignUpForm";
+import LoginForm from "./LoginForm";
+import ForgotPassword from "./ForgotPassword";
 
 function Login(props) {
+  const [showLoginMeny, setShowLoginMeny] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+  const [showForgotPassword, setshowForgotPassword] = useState(false);
 
-  const [enteredUsername, setEnteredUsername] = useState("");
-  const [enteredPassword, setEnteredPassword] = useState("");
   const [isValid, setIsValid] = useState(true);
 
-  const cancel = () => {
+  const returnToMenyHandler = () => {
+    setShowLoginMeny(true);
     setShowLogin(false);
     setShowSignUp(false);
-    setIsValid(true);
+    setshowForgotPassword(false);
   };
 
   let isAdmin = false;
 
-  const controlCredentials = () => {
-    for (const currentUser of props.currentUsers) {
+  const controlCredentials = (username, password) => {
+    for (const user of props.users) {
       if (
-        currentUser.name === enteredUsername &&
-        currentUser.password === enteredPassword
+        user.name === username &&
+        user.password === password
       ) {
-        isAdmin = currentUser.admin;
+        isAdmin = user.admin;
         return true;
       }
     }
     return false;
   };
 
-  const loginSubmitHandler = (event) => {
-    event.preventDefault();
-
-    if (
-      (enteredUsername.trim().length === 0 &&
-        enteredPassword.trim().length === 0) ||
-      !controlCredentials()
-    ) {
+  const onLoginHandler = (username, password) => {
+    if (!controlCredentials(username, password)) {
       setIsValid(false);
       return;
     }
-
-    props.login(enteredUsername, enteredPassword, isAdmin);
+    props.login(username, password, isAdmin);
   };
 
   const SignUp = () => {
+    setShowLoginMeny(false);
     setShowSignUp(true);
   };
 
   const EnterCredentials = () => {
+    setShowLoginMeny(false);
     setShowLogin(true);
   };
 
-  const userNameChangeHandler = (event) => {
-    if (event.target.value.trim().length > 0) {
-      setIsValid(true);
-    }
-    setEnteredUsername(event.target.value);
-  };
-
-  const passwordChangeHandler = (event) => {
-    if (event.target.value.trim().length > 0) {
-      setIsValid(true);
-    }
-    setEnteredPassword(event.target.value);
-  };
-
   const createNewUserHandler = () => {
-    setShowSignUp(false)
-  }
-
-  let loginContent = (
-    <div className={styles["login-buttons"]}>
-      <Button onClick={EnterCredentials}>Login</Button>
-      <br />
-      <Button onClick={SignUp}>Sign up</Button>
-      <br />
-      <br />
-      <p
-        className={styles["password-link"]}
-        onClick={() => console.log("take me to passwords")}
-      >
-        Forgot your password?
-      </p>
-    </div>
-  );
-
-  if (showLogin) {
-    loginContent = (
-      <div
-        className={`${styles["form-control"]} ${!isValid && styles.invalid}`}
-      >
-        <form className={styles.form} noValidate autoComplete="off">
-          <TextField
-            id="username"
-            label="Username"
-            onChange={userNameChangeHandler}
-          />
-          <br />
-          <TextField
-            id="password"
-            label="Password"
-            onChange={passwordChangeHandler}
-          />
-        </form>
-        <Button onClick={loginSubmitHandler} type="submit">
-          Login
-        </Button>
-        <Button onClick={cancel}>Back</Button>
-      </div>
-    );
-  } 
+    setShowLoginMeny(false);
+    setShowSignUp(false);
+  };
 
   return (
     <div className={styles.login}>
       <img src={logo} className={styles["App-logo"]} alt="logo" />
       <h1>VolunteerApp</h1>
-      {!isValid && <p>Please enter username and password</p>}
-      {!showSignUp && loginContent}
-      {showSignUp && <SignUpForm createNewUser={createNewUserHandler}/>}
+      {/* //TODO: Change error message depending on error. Include a timer or reset of the message  */}
+      {!isValid && <p>Entered username and password doesn't exist</p>}
+      {showLoginMeny && (
+        <div>
+          <Button onClick={EnterCredentials}>Login</Button>
+          <br />
+          <Button onClick={SignUp}>Sign up</Button>
+          <br />
+          <br />
+          <p
+            className={styles["password-link"]}
+            onClick={() => console.log("take me to passwords")}
+          >
+            Forgot your password?
+          </p>
+        </div>
+      )}
+      {showLogin && <LoginForm onLogin={onLoginHandler} returnToMeny={returnToMenyHandler} />}
+      {showSignUp && (
+        <SignUpForm
+          createNewUser={createNewUserHandler}
+          returnToMeny={returnToMenyHandler}
+        />
+      )}
+      {showForgotPassword && (
+        <ForgotPassword returnToMeny={returnToMenyHandler} />
+      )}
     </div>
   );
 }
