@@ -4,6 +4,7 @@ import logo from "../../Icons/Logo.svg";
 import Button from "../UI/Button";
 
 import { TextField } from "@material-ui/core";
+import SignUpForm from "./SignUpForm";
 
 function Login(props) {
   const [showLogin, setShowLogin] = useState(false);
@@ -37,7 +38,6 @@ function Login(props) {
   const loginSubmitHandler = (event) => {
     event.preventDefault();
 
-    // Todo: change text depending if username exists or if the field is not entered?
     if (
       (enteredUsername.trim().length === 0 &&
         enteredPassword.trim().length === 0) ||
@@ -52,10 +52,6 @@ function Login(props) {
 
   const SignUp = () => {
     setShowSignUp(true);
-  };
-
-  const signUpNewUserHandler = () => {
-    setShowSignUp(false);
   };
 
   const EnterCredentials = () => {
@@ -75,6 +71,10 @@ function Login(props) {
     }
     setEnteredPassword(event.target.value);
   };
+
+  const createNewUserHandler = () => {
+    setShowSignUp(false)
+  }
 
   let loginContent = (
     <div className={styles["login-buttons"]}>
@@ -116,30 +116,15 @@ function Login(props) {
         <Button onClick={cancel}>Back</Button>
       </div>
     );
-  } else if (showSignUp) {
-    loginContent = (
-      <div className="input">
-        <TextField id="signup-name" label="Full Name" />
-        <br />
-        <TextField id="signup-username" label="Username" />
-        <br />
-        <TextField id="signup-password" label="Password" />
-        <br />
-        <TextField id="signup-password-repeat" label="Repeat Password" />
-        <br />
-        <br />
-        <Button onClick={signUpNewUserHandler}>Submit</Button>
-        <Button onClick={cancel}>Back</Button>
-      </div>
-    );
-  }
+  } 
 
   return (
     <div className={styles.login}>
       <img src={logo} className={styles["App-logo"]} alt="logo" />
       <h1>VolunteerApp</h1>
       {!isValid && <p>Please enter username and password</p>}
-      {loginContent}
+      {!showSignUp && loginContent}
+      {showSignUp && <SignUpForm createNewUser={createNewUserHandler}/>}
     </div>
   );
 }
