@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from './Chat.module.css'
 // RCE CSS
 import 'react-chat-elements/dist/main.css'
 // MessageBox component
-import { MessageBox, ChatList, ChatItem, MessageList } from 'react-chat-elements'
+import { MessageBox, ChatList, ChatItem, MessageList, Input, Button } from 'react-chat-elements'
 
 function Chat() {
     let listOfChats = [
@@ -20,15 +20,74 @@ function Chat() {
             date: new Date(2021, 1, 1, 16, 10)
         },
     ];
-    return (
+    
+    const [showMessages, setShowMessages] = useState(false)
+    const [showList, setShowList] = useState(true)
+
+    const openMessages = (person) => {
+        setShowMessages(true)
+    }
+
+    const cancel = () => {
+        setShowMessages(false)
+        setShowList(true)
+    }
+
+    let chatScreen = (
         <div className={styles.Chat}>
             <ChatList 
                 className = 'chat list'
                 dataSource = {listOfChats}
-                onClick = {(props) => 
-                    alert(props.title)
+                onClick = {(person) => 
+                    // alert(props.title)
+                    openMessages(person)
                 }
             />
+        </div>
+    )
+    if (showMessages) {
+        chatScreen = (
+            <div>
+                <button onClick = {cancel}>
+                    Go back
+                </button>
+                <MessageList
+                    className = 'Messages'
+                    lockable = {true}
+                    toBottomHeight = {'100%'}
+                    dataSource = {[
+                        {
+                            position: 'right',
+                            type: 'text',
+                            text: 'Consectetur adipisicing elit',
+                            date: new Date(),
+                        },
+                        {
+                            position: 'right',
+                            type: 'text',
+                            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+                            date: new Date(),
+                        },
+                        {
+                            position: 'left',
+                            type: 'text',
+                            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+                            date: new Date(),
+                        },
+                        {
+                            position: 'right',
+                            type: 'text',
+                            text: 'Lorem ipsum dolor sit amet',
+                            date: new Date(),
+                        },
+                    ]}
+                />
+            </div>
+        )
+    }
+    return (
+        <div>
+            {chatScreen}
         </div>
     )
 }
