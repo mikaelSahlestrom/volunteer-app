@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import styles from './Chat.module.css'
+import virvel from '../../../Icons/DefaultChatImage.svg'
 // RCE CSS
 import 'react-chat-elements/dist/main.css'
 // MessageBox component
@@ -8,7 +9,8 @@ import { MessageBox, ChatList, ChatItem, MessageList, Input, Button } from 'reac
 function Chat() {
     let listOfChats = [
         {
-            avatar: 'https://avatars.githubusercontent.com/u/82896272?v=4',
+            // avatar: 'https://avatars.githubusercontent.com/u/82896272?v=4',
+            avatar: virvel,
             title: 'TestBot',
             subtitle: 'How are you?',
             date: new Date(),
