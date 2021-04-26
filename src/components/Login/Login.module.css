@@ -28,31 +28,3 @@
   height: 60vmin;
   pointer-events: none;
 }
-
-.form {
-    margin-bottom: 20px;
-}
-
-.form-control {
-    margin: 0.5rem 0;
-  }
-  .form-control label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-   
-  .form-control input:focus {
-    outline: none;
-    background: #d0d6fa;
-    border-color: #0e008b;
-  }
-
-.form-control.invalid input {
-    border-color: red;
-    background: #ffd7d7;
-  }
-  
-  .form-control.invalid label {
-    color: red;
-  }

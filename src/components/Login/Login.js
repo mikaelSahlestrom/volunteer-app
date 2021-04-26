@@ -1,145 +1,105 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import styles from "./Login.module.css";
 import logo from "../../Icons/Logo.svg";
-import Button from "../UI/Button";
+import Button from "../UI/Button/Button";
 
-import { TextField } from "@material-ui/core";
+import SignUpForm from "./SignUpForm";
+import LoginForm from "./LoginForm";
+import ForgotPassword from "./ForgotPassword";
 
 function Login(props) {
+  const [showLoginMeny, setShowLoginMeny] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+  const [showForgotPassword, setshowForgotPassword] = useState(false);
 
-  const [enteredUsername, setEnteredUsername] = useState("");
-  const [enteredPassword, setEnteredPassword] = useState("");
   const [isValid, setIsValid] = useState(true);
 
-  const cancel = () => {
+  const returnToMenyHandler = () => {
+    setIsValid(true)
+    setShowLoginMeny(true);
     setShowLogin(false);
     setShowSignUp(false);
-    setIsValid(true);
+    setshowForgotPassword(false);
   };
 
   let isAdmin = false;
 
-  const controlCredentials = () => {
-    for (const currentUser of props.currentUsers) {
-      if (
-        currentUser.name === enteredUsername &&
-        currentUser.password === enteredPassword
-      ) {
-        isAdmin = currentUser.admin;
+  const controlCredentials = (username, password) => {
+    for (const user of props.users) {
+      if (user.name === username && user.password === password) {
+        isAdmin = user.admin;
         return true;
       }
     }
     return false;
   };
 
-  const loginSubmitHandler = (event) => {
-    event.preventDefault();
-
-    // Todo: change text depending if username exists or if the field is not entered?
-    if (
-      (enteredUsername.trim().length === 0 &&
-        enteredPassword.trim().length === 0) ||
-      !controlCredentials()
-    ) {
+  const onLoginHandler = (username, password) => {
+    if (!controlCredentials(username, password)) {
       setIsValid(false);
       return;
     }
-
-    props.login(enteredUsername, enteredPassword, isAdmin);
+    props.login(username, password, isAdmin);
   };
 
-  const SignUp = () => {
+  const signUpHandler = () => {
+    setShowLoginMeny(false);
     setShowSignUp(true);
   };
 
-  const signUpNewUserHandler = () => {
-    setShowSignUp(false);
-  };
-
-  const EnterCredentials = () => {
+  const enterCredentialsHandler = () => {
+    setShowLoginMeny(false);
     setShowLogin(true);
   };
 
-  const userNameChangeHandler = (event) => {
-    if (event.target.value.trim().length > 0) {
-      setIsValid(true);
-    }
-    setEnteredUsername(event.target.value);
+  const forgottenPasswordHandler = () => {
+    setShowLoginMeny(false);
+    setshowForgotPassword(true);
   };
 
-  const passwordChangeHandler = (event) => {
-    if (event.target.value.trim().length > 0) {
-      setIsValid(true);
-    }
-    setEnteredPassword(event.target.value);
+  const createNewUserHandler = (username, password, admin) => {
+    props.updateUsers(username, password, admin)
+    setShowLoginMeny(true);
+    setShowSignUp(false);
   };
-
-  let loginContent = (
-    <div className={styles["login-buttons"]}>
-      <Button onClick={EnterCredentials}>Login</Button>
-      <br />
-      <Button onClick={SignUp}>Sign up</Button>
-      <br />
-      <br />
-      <p
-        className={styles["password-link"]}
-        onClick={() => console.log("take me to passwords")}
-      >
-        Forgot your password?
-      </p>
-    </div>
-  );
-
-  if (showLogin) {
-    loginContent = (
-      <div
-        className={`${styles["form-control"]} ${!isValid && styles.invalid}`}
-      >
-        <form className={styles.form} noValidate autoComplete="off">
-          <TextField
-            id="username"
-            label="Username"
-            onChange={userNameChangeHandler}
-          />
-          <br />
-          <TextField
-            id="password"
-            label="Password"
-            onChange={passwordChangeHandler}
-          />
-        </form>
-        <Button onClick={loginSubmitHandler} type="submit">
-          Login
-        </Button>
-        <Button onClick={cancel}>Back</Button>
-      </div>
-    );
-  } else if (showSignUp) {
-    loginContent = (
-      <div className="input">
-        <TextField id="signup-name" label="Full Name" />
-        <br />
-        <TextField id="signup-username" label="Username" />
-        <br />
-        <TextField id="signup-password" label="Password" />
-        <br />
-        <TextField id="signup-password-repeat" label="Repeat Password" />
-        <br />
-        <br />
-        <Button onClick={signUpNewUserHandler}>Submit</Button>
-        <Button onClick={cancel}>Back</Button>
-      </div>
-    );
-  }
 
   return (
     <div className={styles.login}>
       <img src={logo} className={styles["App-logo"]} alt="logo" />
       <h1>VolunteerApp</h1>
-      {!isValid && <p>Please enter username and password</p>}
-      {loginContent}
+      {/* //TODO: Change error message depending on error. Include a timer or reset of the message  */}
+      {!isValid && <p style={{color: "red"}}>Entered username and password doesn't exist</p>}
+      {showLoginMeny && (
+        <div>
+          <Button onClick={enterCredentialsHandler}>Login</Button>
+          <br />
+          <Button onClick={signUpHandler}>Sign up</Button>
+          <br />
+          <br />
+          <p
+            className={styles["password-link"]}
+            onClick={forgottenPasswordHandler}
+          >
+            Forgot your password?
+          </p>
+        </div>
+      )}
+      {showLogin && (
+        <LoginForm
+          onLogin={onLoginHandler}
+          returnToMeny={returnToMenyHandler}
+        />
+      )}
+      {showSignUp && (
+        <SignUpForm
+          createNewUser={createNewUserHandler}
+          returnToMeny={returnToMenyHandler}
+        />
+      )}
+      {showForgotPassword && (
+        <ForgotPassword returnToMeny={returnToMenyHandler} />
+      )}
     </div>
   );
 }

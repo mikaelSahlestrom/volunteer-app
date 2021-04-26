@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Profile.module.css'
-import Button from '../../UI/Button'
+import Button from '../../UI/Button/Button'
 
 function Profile(props) {
     return (
