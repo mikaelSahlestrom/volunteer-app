@@ -3,7 +3,7 @@ import styles from './Navbar.module.css'
 import NavbarButton from './NavbarButton/NavbarButton'
 import Dog from '../../../Icons/DogIcon.svg'
 import Calendar from '../../../Icons/CalendarIcon.svg'
-import Chat from '../../../Icons/ChatIcon.svg'
+import Chat from '../../../Icons/ChaticonSina.svg'
 import Profile from '../../../Icons/ProfileIcon.svg'
 
 function Navbar(props) {
