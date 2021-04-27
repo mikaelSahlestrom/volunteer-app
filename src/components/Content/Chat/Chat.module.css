@@ -1,4 +1,13 @@
 .Chat{
-    background-color: cadetblue;
+    background-color: rgb(116, 160, 95);
     height: 500px;
+}
+
+.messages-input{
+    position: fixed;
+    margin-bottom: 0px;
+}
+
+.chatscreen{
+    height: 1000px;
 }
