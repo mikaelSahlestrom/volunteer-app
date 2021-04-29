@@ -5,7 +5,8 @@ function NavbarButton(props) {
     
     return (
         <div className={styles["navbar-button"]} onClick={() => props.onClick(props.type)}>
-            <img src={props.image} className={styles.image} alt="nav-icon" />
+            {props.children}
+            {/* <img src={props.image} className={styles.image} alt="nav-icon" /> */}
         </div>
     )
 }
