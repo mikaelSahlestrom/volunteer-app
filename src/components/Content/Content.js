@@ -32,7 +32,7 @@ function Content(props) {
       pickedContent = <Chat />;
       break;
     case "profile":
-      pickedContent = <Profile logoutHandler={logout} />;
+      pickedContent = <Profile user={props.user} logoutHandler={logout} />;
       break;
 
     default:
