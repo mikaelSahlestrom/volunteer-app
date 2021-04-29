@@ -12,8 +12,6 @@ function Navbar(props) {
     props.setPath(pickedPathName);
   };
 
-
-  console.log(props)
   return (
     <div className={`${styles.navbar} ${styles[props.colorTheme]}`}>
       <NavbarButton onClick={pickPath} type="schedule" active={props.currentContent === "schedule"}>
