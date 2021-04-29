@@ -11,18 +11,21 @@ function Navbar(props) {
   const pickPath = (pickedPathName) => {
     props.setPath(pickedPathName);
   };
+
+
+  console.log(props)
   return (
     <div className={`${styles.navbar} ${styles[props.colorTheme]}`}>
-      <NavbarButton onClick={pickPath} type="schedule">
+      <NavbarButton onClick={pickPath} type="schedule" active={props.currentContent === "schedule"}>
         <EventOutlinedIcon style={{ fontSize: 40, color: "white" }}/>
       </NavbarButton>
-      <NavbarButton onClick={pickPath} type="animals">
+      <NavbarButton onClick={pickPath} type="animals" active={props.currentContent === "animals"}>
         <PetsOutlinedIcon style={{ fontSize: 40, color: "white" }}/>
       </NavbarButton>
-      <NavbarButton onClick={pickPath} type="chat">
+      <NavbarButton onClick={pickPath} type="chat" active={props.currentContent === "chat"}>
         <ChatIcon style={{ fontSize: 40, color: "white" }}/>
       </NavbarButton>
-      <NavbarButton onClick={pickPath} type="profile">
+      <NavbarButton onClick={pickPath} type="profile" active={props.currentContent === "profile"}>
         <AccountBoxOutlinedIcon style={{ fontSize: 40, color: "white" }}/>
       </NavbarButton>
     </div>

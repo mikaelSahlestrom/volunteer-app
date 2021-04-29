@@ -21,7 +21,15 @@
     padding-left: 20px;
 }
 
+.role{
+    position: absolute;
+    font-size: 20px;
+    right: 15px;
+    padding-top: 60px;
+}
+
 .header{
+    display: flex;
     box-shadow: rgba(0, 0, 0, 0.34) 0px 2px 8px;
     height: 120px;
     width: 100%;
