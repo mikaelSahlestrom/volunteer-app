@@ -5,7 +5,7 @@ import Content from "./components/Content/Content";
 function App() {
   let mockdataUsers = [
     { name: "mikael", password: "test", admin: true },
-    { name: "apa", password: "123", admin: false },
+    { name: "apan1", password: "1234", admin: false },
     { name: "sina", password: "000", admin: true },
     { name: "sara", password: "1234", admin: true },
   ];

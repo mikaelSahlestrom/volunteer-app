@@ -144,7 +144,7 @@ function Animals() {
     }
     
     return (
-        <div>
+        <div className={styles.animals}>
             {animalContent}
         </div>
     )

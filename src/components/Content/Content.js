@@ -45,11 +45,12 @@ function Content(props) {
 
   return (
     <div className={styles.content}>
-      <div className={styles.header}>
+      <div className={`${styles.header} ${styles[colorTheme]}`}>
         <h2 className={styles.title}>{navigation.charAt(0).toUpperCase() + navigation.slice(1)}</h2>
+        <h3 className={styles.role}> [{colorTheme}] </h3>
       </div>
       {pickedContent}
-      <Navbar setPath={setPathHandler} colorTheme={colorTheme} />
+      <Navbar setPath={setPathHandler} colorTheme={colorTheme} currentContent={navigation}/>
     </div>
   );
 }
